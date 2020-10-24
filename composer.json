@@ -1,0 +1,35 @@
+{
+    "name": "quillstack/query-builder",
+    "description": "A simple query builder package, with separate Model and Relation classes.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "query-builder",
+        "query",
+        "php",
+        "sql",
+        "model",
+        "database",
+        "php7"
+    ],
+    "homepage": "https://quillstack.com/query-builder",
+    "authors": [
+        {
+            "name": "Radek Ziemniewicz",
+            "email": "open-source@quillstack.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "QuillStack\\QueryBuilder\\": "src/QuillStack/QueryBuilder/",
+            "QuillStack\\Tests\\": "tests/QuillStack/QueryBuilder/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.1",
+        "phpunit/phpunit": "^9"
+    }
+}
