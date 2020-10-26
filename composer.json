@@ -25,7 +25,7 @@
     "autoload": {
         "psr-4": {
             "QuillStack\\QueryBuilder\\": "src/QuillStack/QueryBuilder/",
-            "QuillStack\\Tests\\": "tests/QuillStack/QueryBuilder/"
+            "QuillStack\\Tests\\QueryBuilder\\": "tests/QuillStack/Tests/QueryBuilder/"
         }
     },
     "require-dev": {
