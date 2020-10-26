@@ -1,5 +1,8 @@
 # Quill Stack Query Builder
 
+[![Build Status](https://travis-ci.org/quillstack/query-builder.svg?branch=main)](https://travis-ci.org/quillstack/query-builder)
+[![StyleCI](https://github.styleci.io/repos/303512408/shield?branch=main)](https://github.styleci.io/repos/303512408?branch=main)
+
 A simple query builder package, with separate Model and Relation classes.
 
 ### Unit tests

@@ -1,0 +1,24 @@
+language: php
+sudo: false
+
+php:
+    - 7.4
+
+cache:
+    directories:
+        - $HOME/.composer/cache
+
+addons:
+    sonarcloud:
+        organization: "quillstack"
+        token:
+            secure: "jHP/jA8W6L+prY0heMC5joWC2QK7/hNvKI0hwk8hjbSw7BoZR6DYxEYbolsl4d7VkOvswp7WEa3JM97IbeH6+u4mr4UaensylMfuZsvgJnSObxL5JRja+0X1IEvoN/+aV+j29hPqKhxqDWXD92lnKp810+0Eujewlw1rlfCxwX0BmyB/ak5hzwHe1b51hNrm/kXfIu3/bpoESB5Vb5IkHs1D5c0ub4qj+5lOkPPDDM0KPEM6qH8MWRhAiy9mxmifZZ1pTZheP9FNagiCiosFVfB5EsO6Nf8PXfxT0yUrTd0oIzKSvd2yaz1PZYKGBaKUgOZF2pGNtMegFEGBDMrxoLLvObNUYMr4/BMbE11O+nGKcOh7EMnJzOVdwvhA3FYihJQ9m+Ss/LpibwaxW5dqi5NUG9U5VOFeQSeqzskzLJRPxyDnE9Dy5hKPBi0zOquYQ38Ez3Yt+nMzlMWg8R82LFqUoF5MAUsIxsKsXPLmNmVClBQuOXL5uoOzrUMd31l5cwct/hURETKTNlRQ6Jw1+Q0zb4ZSVR9FqWY3Iw0li8C9vX+MYj28c9pVbm8wQbFUHOPZN00WskXTUcPpkI9cEopUvYoKwaQdYxrppyADZYgsdleS6NxJ0IS7108DBNmu/i1AJMZYhw9pd4Hct/iIHr7rOVFL0RalnSg6vlU+aTg="
+
+git:
+    depth: false
+
+install: composer update --no-interaction --no-suggest --no-progress
+
+script:
+    - phpdbg -qrr vendor/bin/phpunit  --coverage-clover phpunit.coverage.xml --log-junit phpunit.report.xml
+    - sonar-scanner
