@@ -25,5 +25,4 @@ class TestQueryBuilder extends TestCase
         $this->container = new Container();
         $this->qb = $this->container->get(QueryBuilder::class);
     }
-
 }
