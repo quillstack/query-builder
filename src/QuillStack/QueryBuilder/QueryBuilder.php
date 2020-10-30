@@ -30,7 +30,7 @@ class QueryBuilder implements QueryBuilderInterface
 
         return $this;
     }
-    
+
     /**
      * {@inheritDoc}
      */

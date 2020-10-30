@@ -6,5 +6,4 @@ namespace QuillStack\QueryBuilder\Connection;
 
 final class MySqlConnector
 {
-
 }
