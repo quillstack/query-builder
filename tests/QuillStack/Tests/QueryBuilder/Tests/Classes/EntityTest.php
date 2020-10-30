@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace QuillStack\Tests\QueryBuilder\Tests;
+namespace QuillStack\Tests\QueryBuilder\Tests\Classes;
 
 use PHPUnit\Framework\TestCase;
 use QuillStack\Tests\QueryBuilder\Mocks\Entities\BookEntity;

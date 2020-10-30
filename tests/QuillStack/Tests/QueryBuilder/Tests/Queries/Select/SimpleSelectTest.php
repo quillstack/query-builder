@@ -13,8 +13,8 @@ final class SimpleSelectTest extends TestQueryBuilder
 {
     public function testSimpleSelect()
     {
-        $user = $this->qb->get(User::class);
-        $query = $this->qb->select('*')->getQuery();
+        $user = $this->container->get(User::class);
+        $query = $user->select('*')->getQuery();
 
         $this->assertEquals('custom_users', $user->entity->table);
         $this->assertEquals('SELECT t1.* FROM `custom_users` AS t1', $query);
@@ -22,16 +22,25 @@ final class SimpleSelectTest extends TestQueryBuilder
 
     public function testGuessTableNameSelect()
     {
-        $book = $this->qb->get(Book::class);
+        $book = $this->container->get(Book::class);
 
         $this->assertEquals('books', $book->entity->table);
+    }
+
+    public function testArrayColumnTypeException()
+    {
+        $user = $this->container->get(User::class);
+        $query = $user->select(['*'])->getQuery();
+
+        $this->assertEquals('custom_users', $user->entity->table);
+        $this->assertEquals('SELECT t1.* FROM `custom_users` AS t1', $query);
     }
 
     public function testIncorrectColumnTypeException()
     {
         $this->expectException(IncorrectColumnTypeException::class);
 
-        $this->qb->get(User::class);
-        $this->qb->select(23)->getQuery();
+        $user = $this->container->get(User::class);
+        $user->select(23)->getQuery();
     }
 }

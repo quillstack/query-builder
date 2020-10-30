@@ -12,7 +12,7 @@ final class OneToManySelectTest extends TestQueryBuilder
 {
     public function testSimpleOneToMany()
     {
-        $book = $this->qb->get(Book::class);
+        $book = $this->container->get(Book::class);
 
         $this->assertInstanceOf(OneToMany::class, $book->entity->authors());
     }

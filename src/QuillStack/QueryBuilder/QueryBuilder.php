@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace QuillStack\QueryBuilder;
 
 use QuillStack\QueryBuilder\Exceptions\IncorrectColumnTypeException;
+use QuillStack\QueryBuilder\Model\Model;
 
-final class QueryBuilder
+class QueryBuilder implements QueryBuilderInterface
 {
     /**
      * @var array
@@ -19,35 +20,19 @@ final class QueryBuilder
     private Model $model;
 
     /**
-     * @var Entity
-     */
-    private Entity $entity;
-
-    /**
-     * @param string $className
-     */
-    public function __construct(string $className = '')
-    {
-        if (empty($className)) {
-            return;
-        }
-
-        $this->get($className);
-    }
-
-    public function get(string $className)
-    {
-        $this->model = container()->get($className);
-        $this->entity = $this->model->entity;
-        $this->entity->model = $this->model;
-
-        return $this->model;
-    }
-
-    /**
-     * @param string $columns
+     * @param Model $model
      *
      * @return $this
+     */
+    public function setModel(Model $model): self
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+    
+    /**
+     * {@inheritDoc}
      */
     public function select($columns = '*'): self
     {
@@ -67,10 +52,18 @@ final class QueryBuilder
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getQuery(): string
     {
-        return 'SELECT t1.' . implode(', ', $this->columns) . ' FROM `' . $this->entity->table . '` AS t1';
+        return 'SELECT t1.' . implode(', ', $this->columns) . ' FROM `' . $this->model->entity->table . '` AS t1';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function get(): array
+    {
+        return [];
     }
 }

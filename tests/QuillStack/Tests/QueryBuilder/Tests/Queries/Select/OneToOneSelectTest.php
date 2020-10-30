@@ -12,7 +12,7 @@ final class OneToOneSelectTest extends TestQueryBuilder
 {
     public function testOneToOne()
     {
-        $book = $this->qb->get(Book::class);
+        $book = $this->container->get(Book::class);
 
         $this->assertInstanceOf(OneToOne::class, $book->entity->title());
     }

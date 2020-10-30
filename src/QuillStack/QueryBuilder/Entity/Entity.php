@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace QuillStack\QueryBuilder;
+namespace QuillStack\QueryBuilder\Entity;
 
 use QuillStack\QueryBuilder\Relations\ManyToMany;
 use QuillStack\QueryBuilder\Relations\OneToMany;
 use QuillStack\QueryBuilder\Relations\OneToOne;
 
-class Entity
+class Entity implements EntityInterface
 {
     /**
      * @var string

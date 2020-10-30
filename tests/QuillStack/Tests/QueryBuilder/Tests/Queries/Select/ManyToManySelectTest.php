@@ -12,7 +12,7 @@ final class ManyToManySelectTest extends TestQueryBuilder
 {
     public function testManyToManySelect()
     {
-        $book = $this->qb->get(Book::class);
+        $book = $this->container->get(Book::class);
 
         $this->assertInstanceOf(ManyToMany::class, $book->entity->libraries());
     }

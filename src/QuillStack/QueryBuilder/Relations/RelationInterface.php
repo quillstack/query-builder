@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace QuillStack\QueryBuilder;
+namespace QuillStack\QueryBuilder\Relations;
 
 interface RelationInterface
 {
