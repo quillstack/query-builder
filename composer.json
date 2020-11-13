@@ -21,7 +21,9 @@
     ],
     "require": {
         "php": "^7.4",
-        "quillstack/di": "^1.6"
+        "ext-pdo": "*",
+        "quillstack/di": "^1.6",
+        "quillstack/parameter-bag": "^1.0"
     },
     "autoload": {
         "psr-4": {

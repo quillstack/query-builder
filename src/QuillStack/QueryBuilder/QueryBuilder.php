@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace QuillStack\QueryBuilder;
 
+use PDO;
+use QuillStack\ParameterBag\ParameterBag;
+use QuillStack\QueryBuilder\Connection\MySqlConnector;
 use QuillStack\QueryBuilder\Exceptions\IncorrectColumnTypeException;
 use QuillStack\QueryBuilder\Model\Model;
 
@@ -18,6 +21,32 @@ class QueryBuilder implements QueryBuilderInterface
      * @var Model
      */
     private Model $model;
+
+    /**
+     * @var ParameterBag
+     */
+    private ParameterBag $params;
+
+    /**
+     * @var PDO
+     */
+    private PDO $connection;
+
+    /**
+     * @param array $params
+     */
+    public function __construct(array $params)
+    {
+        $this->params = new ParameterBag($params);
+
+        $connector = new MySqlConnector($this->params);
+        $this->connection = $connector->getConnection();
+    }
+
+    public function prepare(string $query)
+    {
+        return $this->connection->prepare($query);
+    }
 
     /**
      * @param Model $model

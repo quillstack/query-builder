@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace QuillStack\QueryBuilder\Model;
 
+use PDO;
 use QuillStack\QueryBuilder\QueryBuilder;
 use QuillStack\QueryBuilder\QueryBuilderInterface;
 
@@ -12,12 +13,18 @@ class Model implements QueryBuilderInterface, ModelInterface
     /**
      * @var QueryBuilder
      */
-    private QueryBuilder $queryBuilder;
+    public QueryBuilder $queryBuilder;
 
-    public function __construct()
+    /**
+     * @param int $id
+     *
+     * @return $this
+     */
+    public function find(int $id): self
     {
-        $this->queryBuilder = new QueryBuilder();
-        $this->queryBuilder->setModel($this);
+        $stmt = $this->queryBuilder->prepare("SELECT * FROM titles WHERE id = :id LIMIT 1");
+        $stmt->execute(['id' => $id]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
